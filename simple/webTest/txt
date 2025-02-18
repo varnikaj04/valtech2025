@@ -1,0 +1,4 @@
+export M2_HOME= "/home/varnikajain/Tools/apache-maven-3.8.6"
+PATH="${M2_HOME}/bin:${PATH}"
+export PATH
+

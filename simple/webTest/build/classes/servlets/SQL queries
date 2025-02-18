@@ -1,0 +1,12 @@
+create table dept(id integer primary key, name varchar(20), location varchar(20));
+insert into dept(id, name, location) values(1, 'HR','BLR'), (2, 'HR', 'AMD');
+insert into dept(id, name, location) values (5, 'ACC', 'AMD');
+select * from dept;
+
+select * from employee;
+alter table employee add column deptId integer, add constraint fk_id foreign key (deptId) references dept(id);
+
+update employee set deptId = 1 where id =1;
+update employee set deptId = 2 where id =3;
+
+insert into employee (id,name, age, salary, gender, level, experience, deptid) values (2, 'varni', 22, 51000, 'FEMALE', 3, 1, 2), (3, 'khatri', 21, 25000, 'MALE', 2, 2, 2);
