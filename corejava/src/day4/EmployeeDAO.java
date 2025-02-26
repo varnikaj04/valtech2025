@@ -15,7 +15,5 @@ public interface EmployeeDAO {
 	Employee get(int id);
 	
 	List<Employee> getAll();
-	
-	List<Employee> getEmployeeByDeptId(int deptId);
 
 }
