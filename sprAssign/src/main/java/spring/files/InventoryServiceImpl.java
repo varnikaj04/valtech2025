@@ -21,9 +21,9 @@ public class InventoryServiceImpl {
 
 	public void checkInventory() {
 		if(item.getCurrentQuan() < item.getReorderQuan()) {
-			addInventory(item){
+//			addInventory(item){
 //				itemDAO.update(item.getCurrentQuan());
-			}
+//			}
 		}
 	}
 	

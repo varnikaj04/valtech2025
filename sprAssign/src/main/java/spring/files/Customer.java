@@ -1,6 +1,7 @@
 package spring.files;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -23,8 +24,9 @@ public class Customer {
 	private int age;
 	private String address;
 	private String permaddress;
+	
 	@OneToMany(targetEntity = Order.class, mappedBy = "customer",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Order> orders;
+	private Set<Order> orders;
 	
 	public Customer() {}
 
@@ -35,11 +37,11 @@ public class Customer {
 		this.permaddress = permaddress;
 	}
 	
-	public List<Order> getOrders() {
+	public Set<Order> getOrders() {
 		return orders;
 	}
 	
-	public void setOrders(List<Order> orders) {
+	public void setOrders(Set<Order> orders) {
 		this.orders = orders;
 	}
 

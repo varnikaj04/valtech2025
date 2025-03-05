@@ -25,8 +25,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 //	}
 	
 	ServletContext sc;
-	
-	
+
+	public EmployeeDAOImpl() {}
 
 	public EmployeeDAOImpl(ServletContext sc) {
 		this.sc = sc;

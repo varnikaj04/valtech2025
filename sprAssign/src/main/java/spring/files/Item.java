@@ -1,9 +1,14 @@
 package spring.files;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -18,6 +23,9 @@ public class Item {
 	private int reorderQuan;
 	private int maxQuan;
 	
+	@OneToMany(targetEntity = LineItems.class, cascade = CascadeType.ALL, mappedBy = "item", fetch = FetchType.LAZY)
+	private Set<LineItems> lineItems;
+	
 	public Item() {}
 
 	public Item(String name, String description, int currentQuan, int reorderQuan, int maxQuan) {
@@ -26,6 +34,14 @@ public class Item {
 		this.currentQuan = currentQuan;
 		this.reorderQuan = reorderQuan;
 		this.maxQuan = maxQuan;
+	}
+	
+	public Set<LineItems> getLineItems() {
+		return lineItems;
+	}
+	
+	public void setLineItems(Set<LineItems> lineItems) {
+		this.lineItems = lineItems;
 	}
 
 	public int getId() {

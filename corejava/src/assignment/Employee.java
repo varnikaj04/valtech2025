@@ -1,7 +1,5 @@
 package assignment;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Employee implements Comparable<Employee> {
@@ -18,12 +16,9 @@ public class Employee implements Comparable<Employee> {
 		FEMALE, MALE, OTHER;
 	}
 
-	public Employee() {
-		super();
-	}
+	public Employee() {}
 
 	public Employee(long id, String name, int age, float salary, int level, int exp, Gender gender) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.age = age;
@@ -65,21 +60,21 @@ public class Employee implements Comparable<Employee> {
 
 	@Override
 	public int compareTo(Employee emp) {
-		int compareLevel = Integer.compare(this.level, emp.level);
-		if (compareLevel != 0) {
-			return compareLevel;
+		int compareEmpByLevel = Integer.compare(this.level, emp.level);
+		if (compareEmpByLevel != 0) {
+			return compareEmpByLevel;
 		}
-		int compareExp = Integer.compare(this.exp, emp.exp);
-		if (compareExp != 0) {
-			return compareExp;
+		int compareEmpByExp = Integer.compare(this.exp, emp.exp);
+		if (compareEmpByExp != 0) {
+			return compareEmpByExp;
 		}
-		int genderCompare = this.gender.compareTo(emp.gender);
-		if (genderCompare != 0) {
-			return genderCompare;
+		int compareEmpByGender = this.gender.compareTo(emp.gender);
+		if (compareEmpByGender != 0) {
+			return compareEmpByGender;
 		}
-		int compareSalary = Float.compare(this.salary, emp.salary);
-		if (compareSalary != 0) {
-			return compareSalary;
+		int compareEmpBySalary = Float.compare(this.salary, emp.salary);
+		if (compareEmpBySalary != 0) {
+			return compareEmpBySalary;
 		}
 
 		return 0;

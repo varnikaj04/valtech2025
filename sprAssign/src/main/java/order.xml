@@ -9,7 +9,8 @@
 	<p:bean class="spring.files.CustomerServiceImpl"></p:bean>
 	<p:bean class="spring.files.OrderHibernateDAOImpl"></p:bean>
 	<p:bean class="spring.files.ItemHibernateDAOImpl"></p:bean>
-	<!-- <p:bean class="spring.files.OrderItemsHibernateDAOImpl"></p:bean> -->
+	<p:bean class="spring.files.LineItemsDAOImpl"></p:bean>
+	<p:bean class="spring.files.OrderServiceImpl"></p:bean>
 
 	<p:bean autowire="no"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
@@ -18,7 +19,7 @@
 				<p:value>spring.files.Customer</p:value>
 				<p:value>spring.files.Order</p:value>
 				<p:value>spring.files.Item</p:value>
-				<!-- <p:value>spring.files.OrderItems</p:value> -->
+				<p:value>spring.files.LineItems</p:value> 
 			</p:list>
 		</p:property>
 		<p:property name="dataSource" ref="ds"></p:property>

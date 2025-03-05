@@ -1,41 +1,44 @@
 package spring.files;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class LineItems {
 
-	@Id
+	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idseq")
+	@SequenceGenerator(name = "idseq", sequenceName = "id_seq", allocationSize = 1)
 	private int lid;
-	private int itemid;
 	private int quantity;
-	private int oid;
+	
+	@ManyToOne(targetEntity = Item.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "item_id",referencedColumnName = "id")
+	private Item item;
+	
+	@ManyToOne(targetEntity = Order.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "order_id",referencedColumnName = "oid")
+	private Order order;
+	
 	
 	public LineItems() {}
 
-	public LineItems(int lid, int itemid, int quantity, int oid) {
-		super();
-		this.lid = lid;
-		this.itemid = itemid;
+	public LineItems(int quantity) {
 		this.quantity = quantity;
-		this.oid = oid;
 	}
 
-	public int getlid() {
+	public int getLid() {
 		return lid;
 	}
 
-	public void setlid(int lid) {
+	public void setLid(int lid) {
 		this.lid = lid;
-	}
-
-	public int getItemid() {
-		return itemid;
-	}
-
-	public void setItemid(int itemid) {
-		this.itemid = itemid;
 	}
 
 	public int getQuantity() {
@@ -46,19 +49,23 @@ public class LineItems {
 		this.quantity = quantity;
 	}
 
-	public int getOid() {
-		return oid;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setOid(int oid) {
-		this.oid = oid;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
-	@Override
-	public String toString() {
-		return "OrderItems [lid=" + lid + ", itemid=" + itemid + ", quantity=" + quantity + ", oid=" + oid + "]";
+	public Order getOrder() {
+		return order;
 	}
-	
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+
 	
 	
 }

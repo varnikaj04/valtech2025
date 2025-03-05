@@ -45,41 +45,45 @@ class EmployeeTest {
 			System.out.println(e);
 		}
 
-		List<Employee> emp = employees.stream().filter(employee -> employee.getLevel() == 2)
-				.collect(Collectors.toList());
-		System.out.println(emp);
-		double totalSalary = emp.stream().mapToDouble(Employee::getSalary).sum();
-		System.out.println(totalSalary);
+		List<Employee> emp = employees.stream().filter(employee -> employee.getLevel() == 2).collect(Collectors.toList());
+//		System.out.println(emp);
+		double getTotalSalaryByLevel = emp.stream().mapToDouble(Employee::getSalary).sum();
+//		System.out.println(getTotalSalaryByLevel);
+		assertEquals(60000, getTotalSalaryByLevel);
+		
+		
 
-		List<Employee> emp1 = employees.stream().filter(employee -> employee.getGender() == Gender.MALE)
-				.collect(Collectors.toList());
-		System.out.println(emp1);
-		double totalSalary1 = emp1.stream().mapToDouble(Employee::getSalary).sum();
-		System.out.println(totalSalary1);
+		List<Employee> emp1 = employees.stream().filter(employee -> employee.getGender() == Gender.FEMALE).collect(Collectors.toList());
+//		System.out.println(emp1);
+		double getTotalSalaryByGender = emp1.stream().mapToDouble(Employee::getSalary).sum();
+//		System.out.println(getTotalSalaryByGender);
+		assertEquals(70000, getTotalSalaryByGender);
+		
+		
 
-		List<Employee> emp2 = employees.stream().filter(employee -> employee.getName().toLowerCase().contains("t"))
-				.collect(Collectors.toList());
-		System.out.println(emp2);
-		double totalSalary2 = emp2.stream().mapToDouble(Employee::getSalary).sum();
-		System.out.println(totalSalary2);
+		List<Employee> emp2 = employees.stream().filter(employee -> employee.getName().toLowerCase().contains("t")).collect(Collectors.toList());
+//		System.out.println(emp2);
+		double getTotalSalaryByNameContains = emp2.stream().mapToDouble(Employee::getSalary).sum();
+//		System.out.println(getTotalSalaryByNameContains);
+		assertEquals(60000, getTotalSalaryByNameContains);
+		
+		
 
-		List<Employee> emp3 = employees.stream()
-				.filter(employee -> employee.getLevel() == 2 && employee.getGender() == Gender.FEMALE)
-				.collect(Collectors.toList());
-		System.out.println(emp3);
-		double totalSalary3 = emp3.stream().mapToDouble(Employee::getSalary).sum();
-		System.out.println(totalSalary3);
+		List<Employee> emp3 = employees.stream().filter(employee -> employee.getLevel() == 2 && employee.getGender() == Gender.FEMALE).collect(Collectors.toList());
+//		System.out.println(emp3);
+		double getTotalSalaryByLevelAndGender = emp3.stream().mapToDouble(Employee::getSalary).sum();
+//		System.out.println(getTotalSalaryByLevelAndGender);
+		assertEquals(20000, getTotalSalaryByLevelAndGender);
 
 		
-		Map<Gender, List<Employee>> employeeByGender = employees.stream()
-				.collect(Collectors.groupingBy(Employee::getGender));
-		employeeByGender.forEach((gender, empList) -> {
+		Map<Gender, List<Employee>> groupEmployeeByGender = employees.stream().collect(Collectors.groupingBy(Employee::getGender));
+		groupEmployeeByGender.forEach((gender, empList) -> {
 			System.out.println("Gender: " + gender);
 			empList.forEach(e -> System.out
 					.println(e.getId() + e.getName() + e.getAge() + e.getSalary() + e.getLevel() + e.getExp()));
 		});
-
 	}
+	
 	 @Test
 	void testHashCode() {
 		Employee emp1 = new Employee(20, "Abhi", 24, 30000, 5, 3, Employee.Gender.MALE);
@@ -89,19 +93,15 @@ class EmployeeTest {
 		System.out.println(emp2);
 		assertNotEquals(hash, emp2.hashCode());
 	}
-//	 @Test
-//		void testEquals() {
-//			Employee e1 = new Employee(15,"Raj",19,20000,Gender.MALE,1,1);
-//			Employee e2 = new Employee(15,"Raj",19,20000,Gender.MALE,1,1);
-//			Employee e3 = new Employee(21,"Raj",19,20000,Gender.MALE,1,1);
-//			
-//			assertFalse(e1.equals(e3));
-//			assertTrue(e1.equals(e2));
-//		}
-//
-//	@Test
-//	void testCompareTo() {
-//		
-//	}
+	 @Test
+		void testEquals() {
+			Employee e1 = new Employee(15,"Raj",19,20000,1,1,Gender.MALE);
+			Employee e2 = new Employee(15,"Raj",19,20000,1,1,Gender.MALE);
+			Employee e3 = new Employee(21,"Raj",19,20000,1,1,Gender.MALE);
+			
+			assertFalse(e1.equals(e3));
+			assertTrue(e1.equals(e2));
+		}
+
 
 }

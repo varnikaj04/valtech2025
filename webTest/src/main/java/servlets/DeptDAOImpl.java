@@ -22,6 +22,10 @@ public class DeptDAOImpl implements DeptDAO {
 	
 	ServletContext sc;
 	
+	
+	
+	public DeptDAOImpl() {}
+
 	public DeptDAOImpl(ServletContext sc) {
 //		depts = new HashMap<Integer, Dept>();
 		this.sc = sc;

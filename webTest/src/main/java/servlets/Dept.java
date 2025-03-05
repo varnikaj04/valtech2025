@@ -9,12 +9,9 @@ public class Dept implements Comparable<Dept> {
 	private String name;
 	private String location;
 
-	public Dept() {
-		super();
-	}
+	public Dept() {}
 
 	public Dept(int id, String name, String location) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.location = location;
@@ -101,7 +98,6 @@ public class Dept implements Comparable<Dept> {
 
 	@Override
 	public int compareTo(Dept o) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
