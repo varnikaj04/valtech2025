@@ -13,9 +13,13 @@ import org.junit.jupiter.api.Test;
 import assignment.Employee.Gender;
 
 class EmployeeTest {
+	
+	EmployeeService es = new EmployeeService();
+	
 
 	@Test
-	void test() {
+	void enterData() {
+		
 		List<Employee> employees = new ArrayList<>();
 
 		employees.add(Employee.builder().id(1).name("Varnika").age(23).salary(30000).level(1).exp(2)
@@ -45,35 +49,15 @@ class EmployeeTest {
 			System.out.println(e);
 		}
 
-		List<Employee> emp = employees.stream().filter(employee -> employee.getLevel() == 2).collect(Collectors.toList());
-//		System.out.println(emp);
-		double getTotalSalaryByLevel = emp.stream().mapToDouble(Employee::getSalary).sum();
-//		System.out.println(getTotalSalaryByLevel);
-		assertEquals(60000, getTotalSalaryByLevel);
 		
 		
+		assertEquals(320000, es.getTotalSalaryByLevel(employees, 1));
+		
+		assertEquals(70000, es.getTotalSalaryByGender(employees, Gender.FEMALE));
 
-		List<Employee> emp1 = employees.stream().filter(employee -> employee.getGender() == Gender.FEMALE).collect(Collectors.toList());
-//		System.out.println(emp1);
-		double getTotalSalaryByGender = emp1.stream().mapToDouble(Employee::getSalary).sum();
-//		System.out.println(getTotalSalaryByGender);
-		assertEquals(70000, getTotalSalaryByGender);
-		
-		
+		assertEquals(60000, es.getTotalSalaryByNameContains(employees, "t"));
 
-		List<Employee> emp2 = employees.stream().filter(employee -> employee.getName().toLowerCase().contains("t")).collect(Collectors.toList());
-//		System.out.println(emp2);
-		double getTotalSalaryByNameContains = emp2.stream().mapToDouble(Employee::getSalary).sum();
-//		System.out.println(getTotalSalaryByNameContains);
-		assertEquals(60000, getTotalSalaryByNameContains);
-		
-		
-
-		List<Employee> emp3 = employees.stream().filter(employee -> employee.getLevel() == 2 && employee.getGender() == Gender.FEMALE).collect(Collectors.toList());
-//		System.out.println(emp3);
-		double getTotalSalaryByLevelAndGender = emp3.stream().mapToDouble(Employee::getSalary).sum();
-//		System.out.println(getTotalSalaryByLevelAndGender);
-		assertEquals(20000, getTotalSalaryByLevelAndGender);
+		assertEquals(20000, es.getTotalSalaryByLevelAndGender(employees, 2, Gender.FEMALE));
 
 		
 		Map<Gender, List<Employee>> groupEmployeeByGender = employees.stream().collect(Collectors.groupingBy(Employee::getGender));
@@ -83,6 +67,7 @@ class EmployeeTest {
 					.println(e.getId() + e.getName() + e.getAge() + e.getSalary() + e.getLevel() + e.getExp()));
 		});
 	}
+	
 	
 	 @Test
 	void testHashCode() {
