@@ -1,4 +1,4 @@
-package assignment;
+package assignment.JavaCodility;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package assignment;
+package assignment.JavaCodility;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
