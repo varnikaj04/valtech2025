@@ -1,29 +1,17 @@
-package com.valtech.training.loanservice.entities;
+package com.valtech.training.loanserviceclient.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 
-@Entity
 public class Loan {
 	
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "loan_seq")
-	@SequenceGenerator(name = "loan_seq", sequenceName = "loan_seq", allocationSize = 1)
 	private int id;
 	private String userName;
 	private int aadhar;
 	private int cibilScore;
-	@Enumerated(EnumType.STRING)
 	private LoanType loanType;
 	private String asset;
 	private int assetValue;
 	private int value;
 	private int income;
-	@Enumerated(EnumType.STRING)
 	private LoanStatus status;
 	
 	public enum LoanType{
@@ -33,11 +21,12 @@ public class Loan {
 	public enum LoanStatus{
 		APPLIED, APPROVED, PARTIAL_APPROVED, REJECTED
 	}
-	
+
 	public Loan() {}
 
-	public Loan(String userName, int aadhar, int cibilScore, LoanType loanType, String asset, int assetValue,
+	public Loan(int id, String userName, int aadhar, int cibilScore, LoanType loanType, String asset, int assetValue,
 			int value, int income, LoanStatus status) {
+		this.id = id;
 		this.userName = userName;
 		this.aadhar = aadhar;
 		this.cibilScore = cibilScore;
@@ -128,9 +117,8 @@ public class Loan {
 	public void setStatus(LoanStatus status) {
 		this.status = status;
 	}
+	
+	
+	
 
-	
-	
-	
-	
 }

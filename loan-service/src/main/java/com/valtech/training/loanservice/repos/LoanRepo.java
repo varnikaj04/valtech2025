@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.valtech.training.loanservice.entities.Loan;
 
 @Repository
-public interface LoanRepo extends JpaRepository<Loan, Long> {
+public interface LoanRepo extends JpaRepository<Loan, Integer> {
 
 }

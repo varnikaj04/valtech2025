@@ -3,13 +3,19 @@ package com.valtech.training.loanservice.services;
 import java.util.List;
 
 import com.valtech.training.loanservice.entities.Loan;
+import com.valtech.training.loanservice.vos.LoanVO;
 
 public interface LoanService {
 
-	Loan applyLoan(Loan l);
+	Loan processLoan(LoanVO loanVO);
 
-	Loan getLoan(long id);
+	LoanVO applyForLoan(LoanVO lvo);
 
-	List<Loan> getAllLoans();
+	List<LoanVO> getAllLoans();
+
+	LoanVO getLoan(int id);
+
+	LoanVO saveLoan(LoanVO lvo);
+
 
 }
